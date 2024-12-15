@@ -22,5 +22,10 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src/*", "src/components/*", "src/layouts/*"]
+  "include": [
+    "src/*",
+    "src/components/*",
+    "src/layouts/*",
+    "src/features/*/*/*"
+  ]
 }
