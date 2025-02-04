@@ -12,17 +12,17 @@ export function StoryItem(props: StoryItemProps) {
   return (
     <div className="flex gap-1">
       <p className="text-gray-400">{props.index}.</p>
-      <button className="flex pt-2">
+      {/* <button className="flex pt-2">
         <img width={10} height={10} src="/upvote-arrow.svg" />
-      </button>
+      </button> */}
       <div className="flex flex-col text-gray-400 text-sm">
         <div className="flex">
           <a href={props.url} className="text-black">
             {props.title}
           </a>
           (
-          <a href="#" className="hover:underline">
-            {new URL(props.url).hostname}
+          <a href={props.url} className="hover:underline">
+            {props.url ? new URL(props.url).hostname : ""}
           </a>
           )
         </div>
@@ -32,7 +32,7 @@ export function StoryItem(props: StoryItemProps) {
             {props.creatorName}
           </a>
           <a href="#" className="hover:underline">
-            {props.time} hours ago
+            {" " + props.time}
           </a>
           {" | "}
           <a href="#" className="hover:underline">

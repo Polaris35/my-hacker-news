@@ -20,12 +20,20 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "sourceMap": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@utils/*": ["utils/*"],
+      "@utils": ["utils"]
+    }
   },
   "include": [
     "src/*",
     "src/components/*",
     "src/layouts/*",
-    "src/features/*/*/*"
+    "src/features/*/*/*",
+    "src/utils/*"
   ]
 }
