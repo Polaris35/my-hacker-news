@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { getTopStories, loadStoriesData } from "../services/stories-api";
+import {
+  getNewStories,
+  getTopStories,
+  loadStoriesData,
+} from "../services/stories-api";
 import { useParams } from "react-router";
 import { splitIntoChunks } from "@utils";
 import { StoryItemType } from "../types";
@@ -10,6 +14,9 @@ interface useStoriesParam {
 
 export const UseTopStories = () =>
   UseStoriesPagination({ fetchCallback: getTopStories });
+
+export const UseNewStories = () =>
+  UseStoriesPagination({ fetchCallback: getNewStories });
 
 function UseStories({ fetchCallback }: useStoriesParam) {
   const [storiesList, setStoriesList] = useState<number[]>([]);
