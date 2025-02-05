@@ -28,6 +28,7 @@ export function UseTopStoriesPagination() {
   const [currentStories, setCurrentStories] = useState<StoryItemType[]>([]);
   const { page } = useParams();
   const pageSize = 30;
+  const currentPage = page ? parseInt(page!) - 1 : 0;
 
   useEffect(() => {
     if (!storiesList.length) return;
@@ -38,11 +39,11 @@ export function UseTopStoriesPagination() {
 
     async function fetchStoriesData() {
       try {
-        const stories = await loadStoriesData(pages[parseInt(page!) - 1]);
+        const stories = await loadStoriesData(pages[currentPage]);
         const StoryItemList = stories.map((story, indx): StoryItemType => {
           return {
             // just calculate serial number of stories in list
-            index: (parseInt(page!) - 1) * pageSize + 1 + indx,
+            index: currentPage * pageSize + 1 + indx,
             story,
           };
         });
@@ -53,12 +54,12 @@ export function UseTopStoriesPagination() {
     }
 
     fetchStoriesData();
-  }, [storiesList, page]);
+  }, [storiesList, currentPage]);
 
   console.log("storiesList.length: ", storiesList.length);
   return {
     currentStories,
-    page: page ? parseInt(page) : 1,
+    page: currentPage + 1,
     maxPage: Math.ceil(storiesList.length / pageSize),
   };
 }

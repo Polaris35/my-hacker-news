@@ -6,7 +6,7 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<MainPageLayout />}>
-        <Route path="/:page" element={<TopStoriesList />} />
+        <Route path="/:page?" element={<TopStoriesList />} />
       </Route>
     </Routes>
   );
