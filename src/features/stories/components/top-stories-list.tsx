@@ -4,6 +4,7 @@ import { StoryList } from "./story-list";
 
 export function TopStoriesList() {
   const { maxPage, page, currentStories } = UseTopStories();
+  if (!currentStories.length) return <div>Loading...</div>;
   return (
     <div className="flex flex-col gap-2">
       <StoryList list={currentStories} />

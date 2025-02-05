@@ -52,6 +52,7 @@ function UseStoriesPagination({ fetchCallback }: useStoriesParam) {
     });
 
     async function fetchStoriesData() {
+      setCurrentStories([]);
       try {
         const stories = await loadStoriesData(pages[currentPage]);
         const StoryItemList = stories.map((story, indx): StoryItemType => {
