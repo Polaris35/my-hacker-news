@@ -1,11 +1,9 @@
 import { NavLink } from "react-router";
-import { UseTopStoriesPagination } from "../hooks/use-top-stories";
+import { UseTopStories } from "../hooks/use-stories";
 import { StoryList } from "./story-list";
 
 export function TopStoriesList() {
-  const { maxPage, page, currentStories } = UseTopStoriesPagination();
-  console.log("maxPage: ", maxPage);
-  console.log("Page: ", page);
+  const { maxPage, page, currentStories } = UseTopStories();
   return (
     <div className="flex flex-col gap-2">
       <StoryList list={currentStories} />

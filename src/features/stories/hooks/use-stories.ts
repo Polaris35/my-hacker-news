@@ -4,31 +4,38 @@ import { useParams } from "react-router";
 import { splitIntoChunks } from "@utils";
 import { StoryItemType } from "../types";
 
-function UseTopStories() {
+interface useStoriesParam {
+  fetchCallback: () => Promise<number[]>;
+}
+
+export const UseTopStories = () =>
+  UseStoriesPagination({ fetchCallback: getTopStories });
+
+function UseStories({ fetchCallback }: useStoriesParam) {
   const [storiesList, setStoriesList] = useState<number[]>([]);
 
   useEffect(() => {
-    async function fetchTopStories() {
+    async function fetchStories() {
       try {
-        const stories = await getTopStories();
+        const stories = await fetchCallback();
         setStoriesList(stories);
       } catch (error) {
-        console.error("fail to load top stories:", error);
+        console.error(`fail when executing ${fetchCallback.name}:`, error);
       }
     }
 
-    fetchTopStories();
-  }, []);
+    fetchStories();
+  }, [fetchCallback]);
 
   return storiesList;
 }
 
-export function UseTopStoriesPagination() {
-  const storiesList = UseTopStories();
+function UseStoriesPagination({ fetchCallback }: useStoriesParam) {
+  const storiesList = UseStories({ fetchCallback });
   const [currentStories, setCurrentStories] = useState<StoryItemType[]>([]);
   const { page } = useParams();
   const pageSize = 30;
-  const currentPage = page ? parseInt(page!) - 1 : 0;
+  const currentPage = page ? parseInt(page) - 1 : 0;
 
   useEffect(() => {
     if (!storiesList.length) return;
@@ -56,7 +63,6 @@ export function UseTopStoriesPagination() {
     fetchStoriesData();
   }, [storiesList, currentPage]);
 
-  console.log("storiesList.length: ", storiesList.length);
   return {
     currentStories,
     page: currentPage + 1,
