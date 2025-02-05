@@ -1,4 +1,4 @@
-import { Story } from "../types.ts";
+import { Story } from "../types";
 
 export async function getTopStories(): Promise<number[]> {
   const response = await fetch(

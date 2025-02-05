@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
-import { TopStoriesList } from "../features/stories";
-import { MainPageLayout } from "../layouts";
+import { TopStoriesList } from "@features/stories";
+import { MainPageLayout } from "@layouts";
 
 export function AppRoutes() {
   return (

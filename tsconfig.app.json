@@ -26,7 +26,13 @@
     "baseUrl": "./src",
     "paths": {
       "@utils/*": ["utils/*"],
-      "@utils": ["utils"]
+      "@utils": ["utils"],
+      "@features/*": ["features/*"],
+      "@features": ["features"],
+      "@layouts/*": ["layouts/*"],
+      "@layouts": ["layouts"],
+      "@components/*": ["components/*"],
+      "@components": ["components"]
     }
   },
   "include": [
